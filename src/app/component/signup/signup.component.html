@@ -1,0 +1,24 @@
+
+<!-- <app-nav-bar></app-nav-bar> -->
+
+  <div id="login-box">
+    <div class="left">
+      <h1 style="margin-bottom: 50px;">Login</h1>
+      
+      <input type="text" name="username" placeholder="Username" [(ngModel)]="username"/>
+      <!-- <input type="text" name="email" placeholder="E-mail" /> -->
+      <input type="password" name="password" placeholder="Password" [(ngModel)]="password" />
+      <!-- <input type="password" name="password2" placeholder="Retype password" /> -->
+      <input id="rememberChkBox" type="checkbox"> Remember Me
+      <input type="submit" name="signup_submit" value="Sign me up" (click)="getData()"/>
+    </div>
+    
+    <div class="right">
+      <!-- <span class="loginwith">Sign in with<br />social network</span>
+      
+      <button class="social-signin facebook">Log in with facebook</button>
+      <button class="social-signin twitter">Log in with Twitter</button>
+      <button class="social-signin google">Log in with Google+</button> -->
+    </div>
+  </div>
+ 
