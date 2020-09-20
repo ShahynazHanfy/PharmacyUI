@@ -44,7 +44,8 @@ export class NavBarComponent implements OnInit {
             },
             {
                 label:'SubCategory',
-                icon:'pi pi-fw pi-align-right'
+                icon:'pi pi-fw pi-align-right',
+                routerLink: ['/ADDSUBCATEGORY'],
             },
             {
                 label:'Form',

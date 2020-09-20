@@ -14,6 +14,7 @@ export const environment = {
   Country: 'http://localhost:51563/api/drugs/country',
   therasubBYgroup: 'http://localhost:51563/api/drugs/therasubBYgroup/',
   category:'http://localhost:51563/api/Categories/', 
+  subCategory:'http://localhost:51563/api/SubCategories/', 
   login:'http://localhost:51563/api/AuthenticateController',
   production: false
 };

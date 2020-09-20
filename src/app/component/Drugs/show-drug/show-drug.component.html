@@ -120,15 +120,16 @@
                 </td>
 
                   <td>
-                <mat-icon color="warn" style="cursor: pointer;" (click)= "editRow(drug.id)" >launch</mat-icon>
-                    <!-- <mat-icon>delete</mat-icon> -->
-                    <!-- <mat-icon>delete_outline</mat-icon> -->
-                    <!-- <span class="material-icons">face</span> -->
+                <mat-icon color="warn" style="cursor: pointer;" (click)= "editRow(drug.id)">launch</mat-icon>
                 </td>
                 <td>
                     
-                    <mat-icon  color="primary" style="cursor: pointer;" pRipple class="ui-button-warning" (click)="onDeleteRow(drug.id)" >delete_outline</mat-icon>
+            <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+                    <mat-icon  color="primary" style="cursor: pointer;" pRipple class="ui-button-warning" 
+                    (click)="confirm(subCategory.id)"
+                    >delete_outline</mat-icon>
                     <!-- <span class="material-icons">face</span> -->
+            <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
                 </td>
             </tr>
         </ng-template>

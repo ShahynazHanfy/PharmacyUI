@@ -5,7 +5,7 @@ import {Drug} from './../../../Models/Drug'
 import { error } from '@angular/compiler/src/util';
 import { Table } from 'primeng/table';
 import { FilterUtils } from 'primeng/utils';
-import { SelectItem } from 'primeng/api';
+import { ConfirmationService, SelectItem } from 'primeng/api';
 import { map } from 'rxjs/operators'
 // import { ToastrService } from 'ngx-toastr';
 import {MessageService} from 'primeng/api';
@@ -27,7 +27,12 @@ export class ShowDrugComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
-    constructor(private DrugService: DrugService,private messageService: MessageService,private routee:Router) { }
+    constructor (
+      private DrugService: DrugService,
+      private messageService: MessageService,
+      private routee:Router, 
+      private confirmationService: ConfirmationService
+      ) { }
 
     ngOnInit() {
               this.DrugService.GetAll()
@@ -37,11 +42,11 @@ export class ShowDrugComponent implements OnInit {
             }
               ,error=>{console.log(error);
               }) ;
-          }
+    }
 
-          onDeleteRow(id: number) {
-              console.log(id)
-            // if (confirm('Are you sure to delete this Drug ?') == true) {
+    onDeleteRow(id: number) {
+  console.log(id)
+ // if (confirm('Are you sure to delete this Drug ?') == true) {
                 console.log("uuuu")
               this.DrugService.deleteDrug(id)
               .subscribe(x => {
@@ -55,31 +60,40 @@ export class ShowDrugComponent implements OnInit {
                 // this.toastr.warning("Deleted Successfully");
               })
             // }
-          }
+    }
 
-          showSuccess() {
+    showSuccess() {
             this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-        }
+    }
         
-        showInfo() {
+    showInfo() {
           this.messageService.add({severity:'info', summary: 'Info', detail: 'Drug Deleted Successfully'});
-        }
+    }
         
-        showWarn() {
+    showWarn() {
           this.messageService.add({severity:'warn', summary: 'Warn', detail: 'Drug Deleted Successfully'});
-        }
+    }
         
-        showError() {
+    showError() {
           this.messageService.add({severity:'error', summary: 'Error', detail: 'Drug Deleted Successfully'});
-        }
+    }
         
-        showTopLeft() {
+    showTopLeft() {
           this.messageService.add({key: 'tl', severity:'info', summary: 'Info', detail: 'Message Content'});
-        }
+    }
+    confirm(id:number) {
+          this.confirmationService.confirm({
+              message: 'Are you sure that you want to perform this action?',
+              accept: () => {
+                this.onDeleteRow(id)
+                  //Actual logic to perform a confirmation
+              }
+          });
+    }
 
-        editRow(id:number){
+    editRow(id:number){
       this.routee.navigate(['/edit/',id])
-        }
+    }
 
     onActivityChange(event) {
         const value = event.target.value;
@@ -114,5 +128,4 @@ export class ShowDrugComponent implements OnInit {
     onRepresentativeChange(event) {
         this.table.filter(event.value, 'representative', 'in')
     }
-    
 }

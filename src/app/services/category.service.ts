@@ -15,7 +15,7 @@ export class CategoryService {
   })};
 
   
-  GetAllCategories(): Observable <Category[]>{
+GetAllCategories(): Observable <Category[]>{
     return this.httpClient.get<Category[]> (`${environment.category}`,this.httpHeader) ;
 }
 insertCategory(category: Category): Observable <any>{

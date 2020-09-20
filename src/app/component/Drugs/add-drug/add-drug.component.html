@@ -157,6 +157,7 @@
     <option value="" selected disabled hidden>Profession</option>
     <option *ngFor="let th of Thera" value="{{th.id}}">{{th.name}}</option>
 </select> 
+
 <label>Select Thera Sub Group</label>
 <select   [(ngModel)]="Drug.TheraSubGroupID" style="width: 50%;" name="sub" class="form-control" >SubGroup
   <option value="" selected disabled hidden>SubGroup</option>

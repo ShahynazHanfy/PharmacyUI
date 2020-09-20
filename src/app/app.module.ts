@@ -40,6 +40,8 @@ import { AddSubCategoryComponent } from './component/SubCategory/add-sub-categor
 import { EditSubCategoryComponent } from './component/SubCategory/edit-sub-category/edit-sub-category.component';
 import {ShowCategoriesComponent} from './component/Category/show-categories/show-categories.component'
 import { MessageService } from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,10 +51,9 @@ import { MessageService } from 'primeng/api';
     SignupComponent,
     ToastComponent,
     EditDrugComponent,
-    // AddCategoryComponent,
-    AddSubCategoryComponent,
     EditSubCategoryComponent,
     ShowCategoriesComponent,
+    AddSubCategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -80,9 +81,11 @@ import { MessageService } from 'primeng/api';
     RadioButtonModule,
     MatIconModule,
     ToastrModule,
+    ConfirmDialogModule,
+    // ConfirmationService,
     RouterModule.forRoot([])
   ],
-  providers: [DrugService,MessageService],
+  providers: [DrugService,MessageService,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
