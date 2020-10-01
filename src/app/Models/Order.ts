@@ -1,8 +1,15 @@
+import { Drug } from './Drug';
+import { OrderDetails } from './OrderDetails';
 export class Order {
-  ID: number;
-    Code: string;
-    Number:number;
-    Description: string;
-    Comments: string;
-    Date:Date
+  id: number;
+    code: string;
+    number:number;
+    description: string;
+    comments: string;
+    date:Date;
+    supplierID:number;
+    pharmacyID:number;
+    pharmacyDeliverdID:number;
+    pledgeID:number
+   orderDetailList:OrderDetails[]
   }

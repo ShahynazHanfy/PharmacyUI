@@ -1,10 +1,12 @@
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { MessageService ,ConfirmationService} from 'primeng/api';
 import { Table } from 'primeng/table';
 import { Category } from '../../../Models/Category'
-import { CategoryService } from '../../../services/category.service'
+import { CategoryService } from '../../../services/category.service';
+
+
 @Component({
   selector: 'app-show-categories',
   templateUrl: './show-categories.component.html',
@@ -33,13 +35,19 @@ export class ShowCategoriesComponent implements OnInit {
   loading: boolean = true;
 
 
-  constructor(private CategoryService: CategoryService, private ActivatedRoute: ActivatedRoute, private messageService: MessageService, private routee: Router) {
+  constructor(private CategoryService: CategoryService, 
+    private ActivatedRoute: ActivatedRoute, 
+    private messageService: MessageService, 
+    private routee: Router,
+    private confirmationService:ConfirmationService
+    ) {
 
   }
 
 
   @ViewChild('dt') table: Table;
   ngOnInit(): void {
+    console.log(localStorage.getItem("token"))
     this.CategoryService.GetAllCategories()
       .subscribe(category => {
         this.categories = category,
@@ -51,7 +59,7 @@ export class ShowCategoriesComponent implements OnInit {
         });
     this.category =
     {
-      name: '', description: '', descriptionAR: '', nameAR: ''
+      name: '', description: '', descriptionAR: '', nameAR: '',IsActive:true
     }
 
   }
@@ -75,15 +83,14 @@ export class ShowCategoriesComponent implements OnInit {
     this.messageService.add({ key: 'tl', severity: 'info', summary: 'Info', detail: 'Message Content' });
   }
 
-
-
-
-showModalDialog() {
+  showModalDialog() {
     this.displayModal = true;
+    this.ngOnInit();
+
     // console.log(id)
   }
 
-editModalDialog(id:number){
+  editModalDialog(id:number){
     this.editRowId=id
     this.displayBasic = true;
   this.CategoryService.getCategoryByID(id).subscribe(
@@ -94,7 +101,19 @@ editModalDialog(id:number){
   )
 }
   
+  confirm(id:number) {
+      console.log("hello")
+      console.log(id)
 
+  this.confirmationService.confirm({
+      message: 'Are you sure that you want to perform this action?',
+      accept: () => {
+        console.log(id)
+        this.onDeleteRow(id)
+          //Actual logic to perform a confirmation
+      }
+  });
+}
   // editRow(id:number){
   //   this.CategoryService.getDrugByID(this.empId).subscribe(
   //     data=>{
@@ -114,7 +133,10 @@ editModalDialog(id:number){
         this.displayModal = false
         this.messageService.add({ severity: 'success', summary: 'Added', detail: 'Category Deleted Successfully' });
         this.CategoryService.GetAllCategories()
-          .subscribe(categories => { this.categories = categories }
+          .subscribe(categories => { 
+            this.categories = categories,
+            this.ngOnInit();
+           }
           )
       }
         , error => {
@@ -144,7 +166,6 @@ editModalDialog(id:number){
       this.routee.navigate(['/showCategories']) 
       this.ngOnInit() 
       this.messageService.add({ severity: 'info', summary: 'Updated', detail: 'Category Updated Successfully' });
-
   }
     ,error=>{console.log(error);
     });

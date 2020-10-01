@@ -12,11 +12,17 @@ export class LoginService {
     'Accept': '*/*'  
   })};
   constructor(private httpClient:HttpClient) { }
+
   login(userName :string,password:string){
     this.userName=userName;
     this.password=password;
     let Data={userName,password}
     console.log(Data)
   return this.httpClient.post('http://localhost:51563/api/Authenticate/login',Data,this.httpHeader)
+  }
+
+  public isLoggedIn()
+  {
+    return !! localStorage.getItem("token");
   }
 }

@@ -9,17 +9,44 @@ import { from } from 'rxjs';
 import { ShowCategoriesComponent } from './component/Category/show-categories/show-categories.component';
 import { AddSubCategoryComponent } from './component/SubCategory/add-sub-category/add-sub-category.component';
 // import { AddCategoryComponent } from './component/Category/add-category/add-category.component';
+import {AdminComponent} from './component/admin/admin.component'
+// import {fir} from './component/firm/firm.component'
+import { AuthGuard } from './guards/auth.guard';
+import {FirmComponent} from '../app/component/Firm/firm/firm.component'
+import {HomeComponent} from './component/home/home.component'
+// import {RrComponent} from './component/form/form.component'
+import {FormComponent} from '../app/component/form/form.component'
+import {AddOrderComponent} from '../app/component/Order/add-order/add-order.component'
 
 
 const routes: Routes = [
-  { path: '', component: SignupComponent } ,
-  { path: 'showdrug', component: ShowDrugComponent },
-  { path: 'edit/:empID', component: EditDrugComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login'},
+  // { path: '**', redirectTo: 'login'},
   { path: 'login', component:  SignupComponent},
-  { path: 'showCategories', component: ShowCategoriesComponent },
-  { path: 'adddrug', component: AddDrugComponent },
-  { path: 'ADDSUBCATEGORY', component: AddSubCategoryComponent },
-  { path: 'showSubCategories', component: AddSubCategoryComponent },
+
+  { path: 'navbar', component:  NavBarComponent,children:[
+  ]},
+  // { path: 'addorder', component: AddOrderComponent },
+
+  { path: 'home', component: HomeComponent ,children:[
+    { path: 'addorder', component: AddOrderComponent },
+    { path: 'navbar', component:  NavBarComponent},
+    { path: 'showdrug/adddrug', component: AddDrugComponent },
+    { path: 'showdrug', component: ShowDrugComponent, canActivate: [AuthGuard] },
+    { path: 'edit/:empID', component: EditDrugComponent },
+    { path: 'showCategories', component: ShowCategoriesComponent },
+    // { path: 'adddrug', component: ShowCategoriesComponent },
+    { path: 'ADDSUBCATEGORY', component: AddSubCategoryComponent },
+    { path: 'showSubCategories', component: AddSubCategoryComponent },
+    { path: 'admin', component: AdminComponent },
+    { path: 'firm', component: FirmComponent },
+    { path: 'form', component: FormComponent },  
+    // { path: 'addOrder', component: AddOrderComponent },  
+  ]}
+
+
+  // { path: 'showSubCategories', component:  },
+
 
 ];
 

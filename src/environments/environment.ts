@@ -6,16 +6,29 @@ export const environment = {
   
   Drug: 'http://localhost:51563/api/drugs/',
   Thera: 'http://localhost:51563/api/drugs/thera',
+  ActiveThera: 'http://localhost:51563/api/drugs/activethera',
   TheraSub: 'http://localhost:51563/api/drugs/therasub',
   Forms: 'http://localhost:51563/api/drugs/forms',
+  ActiveForms: 'http://localhost:51563/api/Forms/activeForm',
   Firm: 'http://localhost:51563/api/drugs/firms',
   Unit: 'http://localhost:51563/api/drugs/unit',
+  ActiveUnit: 'http://localhost:51563/api/drugs/activeunit',
   ROAD: 'http://localhost:51563/api/drugs/ROAD',
+  ActiveROAD: 'http://localhost:51563/api/drugs/ActiveROAD',
   Country: 'http://localhost:51563/api/drugs/country',
+  ActiveCountry: 'http://localhost:51563/api/drugs/activecountry',
   therasubBYgroup: 'http://localhost:51563/api/drugs/therasubBYgroup/',
   category:'http://localhost:51563/api/Categories/', 
   subCategory:'http://localhost:51563/api/SubCategories/', 
   login:'http://localhost:51563/api/AuthenticateController',
+  firms:'http://localhost:51563/api/Firms',
+  firmsActive:'http://localhost:51563/api/Firms/activeFirm',
+  subCategoryActive:'http://localhost:51563/api/SubCategories/activeSubCategory',
+  form:'http://localhost:51563/api/Forms',
+  order:'http://localhost:51563/api/Orders',
+
+
+
   production: false
 };
 

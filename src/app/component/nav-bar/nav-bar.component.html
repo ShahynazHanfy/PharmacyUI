@@ -15,13 +15,13 @@
         <a class="nav-link">PRODUCTS <span class="sr-only">(current)</span></a>
       </li> -->
 
-<!-- 
+      <!-- 
       <li>
         <select class="nav-link"> -->
-          <!-- <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+      <!-- <option *ngFor="let lang of translate.getLangs()" [value]="lang"
             [selected]="lang === translate.currentLang">
             {{ lang }}</option> -->
-            <!-- <option value="" disabled selected hidden>Drug Management</option>
+      <!-- <option value="" disabled selected hidden>Drug Management</option>
             <option value="volvo">Volvo</option>
             <option value="saab">Saab</option>
             <option value="vw">VW</option>
@@ -38,13 +38,13 @@
       </li> -->
     </ul>
     <form class="form-inline my-2 my-lg-0">
-
       <input class="form-control mr-sm-2" type="search" placeholder="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="logout()">LogOut</button>
     </form>
-    </div>
-    </nav>
-    <router-outlet></router-outlet>
+  </div>
+</nav>
 
 
-    <!--  -->
+<!-- <router-outlet></router-outlet> -->
+<!--  -->

@@ -3,4 +3,6 @@ export class Category {
   nameAR: string;
   description: string;
   descriptionAR: string;
+  IsActive:boolean;
+
 }

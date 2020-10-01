@@ -5,4 +5,6 @@ export class SubCategory {
     descriptionAR :string
     categoryID :number
     theraSubID :number
+    IsActive:boolean;
+
 }

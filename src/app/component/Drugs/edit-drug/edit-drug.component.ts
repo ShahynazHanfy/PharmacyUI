@@ -35,7 +35,7 @@ export class EditDrugComponent implements OnInit {
   {
     this.Drug =
    { 
-    barCode:'',genericName:'',license:'',strength:0,code:'',img:'',pack:0,reOrderLevel:'',tradeName:'',
+    barCode:'',genericName:'',license:'',strength:'',code:'',img:'',pack:'',reOrderLevel:'',tradeName:'',
     TheraSubGroupID:0,FormID:0,FirmID:0,UnitID:0,ROADID:0,CountryID:0
    }
   }
@@ -76,7 +76,7 @@ export class EditDrugComponent implements OnInit {
     ,error=>{console.log(error);
     }) 
 
-    this.drugservice.GetAllUnits()
+    this.drugservice.GetAllActiveUnits()
     .subscribe(units => {
       this.Unit= units,
       console.log('unit'+units)
@@ -84,15 +84,16 @@ export class EditDrugComponent implements OnInit {
     ,error=>{console.log(error);
     }) 
 
-    this.drugservice.GetAllCountry()
+    this.drugservice.GetAllActiveCountry()
     .subscribe(Country => {
       this.Country= Country,
       console.log('country'+Country)
   }
     ,error=>{console.log(error);
     }) 
+    
 
-    this.drugservice.GetAllROAD()
+    this.drugservice.GetAllActiveROAD()
     .subscribe(ROAD => {
       this.ROAD= ROAD,
       console.log('road'+ROAD)
@@ -108,9 +109,10 @@ export class EditDrugComponent implements OnInit {
     this.Drug.theraSubGroupID=Number(this.Drug.theraSubGroupID);
    console.log(typeof(this.Drug.theraSubGroupID)) 
    console.log(this.Drug.theraSubGroupID)
-
     this.Drug.formID=Number(this.Drug.formID);
     this.Drug.firmID=Number(this.Drug.firmID);
+    this.Drug.strength=String(this.Drug.strength)
+    this.Drug.pack=String(this.Drug.pack)
     // console.log(typeof(this.Drug.FirmID))
     // console.log(this.Drug.FirmID)
     // console.log("submitDrug")
@@ -122,7 +124,7 @@ export class EditDrugComponent implements OnInit {
     this.drugservice.updateDrug(this.Drug,this.empId)
     .subscribe(Drug => {
       console.log("Mabork y wa74")
-      this.routee.navigate(['/showdrug'])
+      this.routee.navigate(['home/showdrug'])
   }
     ,error=>{console.log(error);
     }) ;

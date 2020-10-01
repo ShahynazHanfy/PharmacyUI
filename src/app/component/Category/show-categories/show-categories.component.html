@@ -30,13 +30,6 @@
     <ng-template pTemplate="caption">
         <div class="table-header">
 
-
-            <!-- <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Global Search" />
-                </span> -->
-
-            <!-- <button type="button" [disabled]="" class="btn btn-primary" routerLink="/adddrug" (click)="dialogAddNewCategory()">AddNew Category</button> -->
     <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Add Category"></p-button>
 
         </div>
@@ -83,9 +76,6 @@
             </th>
         </tr>
     </ng-template>
-
-
-
     <ng-template pTemplate="body" let-category>
         <tr>
             <td>
@@ -105,15 +95,14 @@
             <td>
                 <mat-icon color="warn" style="cursor: pointer;" (click)="editModalDialog(category.id)">launch</mat-icon>
             <!-- <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Add Category"></p-button> -->
-               
                 <!-- <mat-icon>delete</mat-icon> -->
                 <!-- <mat-icon>delete_outline</mat-icon> -->
                 <!-- <span class="material-icons">face</span> -->
             </td>
             <td>
-
                 <mat-icon color="primary" style="cursor: pointer;" pRipple class="ui-button-warning"
-                    (click)="onDeleteRow(category.id)">delete_outline</mat-icon>
+                    (click)="confirm(category.id)">delete_outline</mat-icon>
+                <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
                 <!-- <span class="material-icons">face</span> -->
             </td>
         </tr>

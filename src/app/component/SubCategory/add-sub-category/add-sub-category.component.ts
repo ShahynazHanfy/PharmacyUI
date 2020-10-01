@@ -18,22 +18,11 @@ import {CategoryService} from '../../../services/category.service'
 export class AddSubCategoryComponent implements OnInit {
   selectedState: any = null;
     
-  states: any[] = [
-      {name: 'Arizona', code: 'Arizona'},
-      {name: 'California', value: 'California'},
-      {name: 'Florida', code: 'Florida'},
-      {name: 'Ohio', code: 'Ohio'},
-      {name: 'Washington', code: 'Washington'}
-  ];
   subCategories: SubCategory[];
 
   subCategory: SubCategory;
 
   categories:Category[]
-
-  // this..FormID=Number(this.Drug.FormID);
-  
-  
 
   theraSubGroup: TheraSubGroup[]
 
@@ -75,7 +64,6 @@ export class AddSubCategoryComponent implements OnInit {
           console.log(error);
         });
        
-       
         this.drugService.GetAllTheraSub().subscribe(therasub=>{
          this.theraSubGroup=therasub
          console.log(this.theraSubGroup)
@@ -88,13 +76,10 @@ export class AddSubCategoryComponent implements OnInit {
 
 
     this.subCategory={
-    name:'',description:'',descriptionAR:'',nameAR:'',categoryID:0,theraSubID:0
+    name:'',description:'',descriptionAR:'',nameAR:'',categoryID:0,theraSubID:0 , IsActive:true
   }
 
   }
-
-
-
 
   showSuccess() {
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
@@ -116,14 +101,24 @@ export class AddSubCategoryComponent implements OnInit {
     this.messageService.add({ key: 'tl', severity: 'info', summary: 'Info', detail: 'Message Content' });
   }
 
-
-
-
   showModalDialog() {
     this.displayModal = true;
+    this.ngOnInit()
+    
+
+  //   this.drugService.GetAllTheraSub().subscribe(therasub=>{
+  //     this.theraSubGroup=therasub
+  //     console.log(this.theraSubGroup)
+  //   })
+
+  //   this.CategoryService.GetAllCategories().subscribe(cat=>{
+  //    this.categories=cat
+  //    console.log(this.categories)
+  //  })
+
   }
 
-editModalDialog(id:number){
+  editModalDialog(id:number){
   console.log(id)
     this.editRowId=id
     this.displayBasic = true;
@@ -140,7 +135,8 @@ addNewSubCategory() {
   console.log(typeof(this.subCategory.theraSubID))
   console.log(this.subCategory.theraSubID)
   this.subCategory.categoryID=Number(this.subCategory.categoryID)
-  console.log(typeof(this.subCategory.categoryID))
+  
+  console.log(this.subCategory.categoryID)
   this.SubCategoryService.insertSubCategory(this.subCategory)
     .subscribe(subCategory => {
       console.log(subCategory)
@@ -160,8 +156,6 @@ addNewSubCategory() {
 
 onDeleteRow(id: number) {
   console.log(id)
-  // if (confirm('Are you sure to delete this Drug ?') == true) {
-  // console.log("uuuu")
   this.SubCategoryService.deleteSubCategory(id)
     .subscribe(x => {
       console.log(x)
@@ -184,8 +178,6 @@ EditCategory() {
   });
 
 }
-
-
     confirm(id:number) {
         this.confirmationService.confirm({
             message: 'Are you sure that you want to perform this action?',

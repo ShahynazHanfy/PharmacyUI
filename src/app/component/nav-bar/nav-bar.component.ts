@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {MenuItem} from 'primeng/api';
 @Component({
   selector: 'app-nav-bar',
@@ -7,17 +8,19 @@ import {MenuItem} from 'primeng/api';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private routee:Router) { }
   items: MenuItem[];
 
   ngOnInit() {
+      
+
   this.items = [
     {
         
         label:'Home',
         icon:'pi pi-home',
         // url: ['/h']
-        routerLink: ['/showdrug'],
+        routerLink: ['/home/showdrug'],
         // routerLinkActiveOptions: {
         //   exact: true
         // }
@@ -31,7 +34,7 @@ export class NavBarComponent implements OnInit {
                 
                 label:'Drug',
                 icon:'pi pi-fw pi-align-left',
-                routerLink: ['/showdrug'],
+                routerLink: ['/home/showdrug'],
 
 
             },
@@ -39,64 +42,70 @@ export class NavBarComponent implements OnInit {
                 
                 label:'Category',
                 icon:'pi pi-fw pi-align-left',
-                routerLink: ['/showCategories'],
+                routerLink: ['/home/showCategories'],
 
             },
             {
                 label:'SubCategory',
                 icon:'pi pi-fw pi-align-right',
-                routerLink: ['/ADDSUBCATEGORY'],
+                routerLink: ['/home/ADDSUBCATEGORY'],
             },
             {
                 label:'Form',
+                routerLink: ['/home/form'],
                 icon:'pi pi-fw pi-align-center'
             },
             {
                 label:'Firm',
-                icon:'pi pi-fw pi-align-justify'
+                icon:'pi pi-fw pi-align-justify',
+                routerLink: ['/home/firm'],
             },
             {
               label:'Supplier',
-              icon:'pi pi-fw pi-align-justify'
+              icon:'pi pi-fw pi-align-justify',
+              routerLink: ['/home/supplier'],
+
           }
 
         ]
     },
     {
-        label:'Medicine Tips',
+        label:'Orders',
         icon:'pi pi-chart-bar',
-        items:[
-            {
-                label:'New',
-                icon:'pi pi-fw pi-user-plus',
+        routerLink: ['addorder'],
 
-            },
-            {
-                label:'Delete',
-                icon:'pi pi-fw pi-user-minus',
+        // items:[
+        //     {
+        //         label:'New Order',
+        //         icon:'pi pi-fw pi-user-plus',
 
-            },
-            {
-                label:'Search',
-                icon:'pi pi-fw pi-users',
-                items:[
-                {
-                    label:'Filter',
-                    icon:'pi pi-fw pi-filter',
-                    items:[
-                        {
-                            label:'Print',
-                            icon:'pi pi-fw pi-print'
-                        }
-                    ]
-                },
-                {
-                    icon:'pi pi-fw pi-bars',
-                    label:'List'
-                }
-                ]
-            }
-        ]
+        //     },
+        //     {
+        //         label:'Delete',
+        //         icon:'pi pi-fw pi-user-minus',
+
+        //     },
+        //     {
+        //         label:'Search',
+        //         icon:'pi pi-fw pi-users',
+        //         items:[
+        //         {
+        //             label:'Filter',
+        //             icon:'pi pi-fw pi-filter',
+        //             items:[
+        //                 {
+        //                     label:'Print',
+        //                     icon:'pi pi-fw pi-print'
+        //                 }
+        //             ]
+        //         },
+        //         {
+        //             icon:'pi pi-fw pi-bars',
+        //             label:'List'
+        //         }
+        //         ]
+        //     }
+        // ]
     },
     
     {
@@ -105,5 +114,12 @@ export class NavBarComponent implements OnInit {
     }
 ];
 
+  }
+
+  public logout()
+  {  console.log(localStorage.getItem("token"))
+    localStorage.removeItem("token");
+    this.routee.navigate(['/login'])
+   
   }
 }

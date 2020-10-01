@@ -1,0 +1,37 @@
+:host>>>.p-orderlist .p-orderlist-list .p-orderlist-item.p-highlight {
+    color: #ffffff;
+    background: #dee2e6;
+}
+:host>>>.p-orderlist-controls{
+    display: none;
+
+}
+/* button{
+    margin-left: 40%;
+    margin-top: 10px;
+} */
+.lab{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+.labinput, label{
+    /* margin-left: 10px; */
+    margin-top: 50px;
+    /* width: 100%; */
+}
+:host>>>.p-rating-icon{
+    display: none;
+}
+:host>>>.p-button{
+    display: none;
+}
+:host>>>.p-rating{
+display: none;
+}
+.iconB{
+    color: blueviolet;
+}
+.iconB:hover{
+    color: blueviolet;
+    cursor: pointer;
+}

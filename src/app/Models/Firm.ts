@@ -1,5 +1,6 @@
 export class Firm {
-  ID: number;
-    Name: string;
-    Code: string;
+  // ID: number;
+    name: string;
+    code: string;
+    IsActive:boolean;
   }

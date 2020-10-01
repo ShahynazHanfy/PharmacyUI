@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from '../../services/login.service'
 import { error } from '@angular/compiler/src/util';
 import { Router } from '@angular/router'; 
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,18 +15,27 @@ export class SignupComponent implements OnInit {
   password:any
   constructor(private loginSer:LoginService,private routee:Router) { }
 
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  });
   ngOnInit() {
   }
   getData(){
     this.loginSer.login(this.username,this.password)
     .subscribe(
-      res=>{
+      res=>
+      {
         console.log(res)
         localStorage.setItem("token",res["token"])
-        console.log(localStorage.getItem("token")),
-        this.routee.navigate(['/showdrug'])
-      },error=>{console.log(error)}
+        console.log(localStorage.getItem("token"))
+        this.routee.navigate(['/home/showdrug'])
+      }
+      ,error=>{console.log(error)}
     )
+    console.log(localStorage.getItem("token"))
   }
+  
+ 
 
 }

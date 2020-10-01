@@ -82,116 +82,164 @@
     <button type="submit" class="btn btn-primary">Sign in</button>
   </form>
 </div> -->
+<!-- 
 <img src="../../../assets/coco/Caps.jpg" class="row"
-  style="height: 100%; width: 45%; float: right; margin-top: 20px; margin-right: 20px;">
+  style="height: 100%; width: 45%; float: right; margin-top: 20px; margin-right: 20px;"> -->
 
-<form (ngSubmit)="SubmitDrug()" style="margin-left: 20PX; margin-top: 20px;">
-  <div class="form-group">
-    <label for="TradeName">TradeName</label>
-    <input type="text" [(ngModel)]="Drug.tradeName"  required minlength="3" name="TradeName" id="TradeName" class="form-control"
-      placeholder="" aria-describedby="helpId">
-    <!-- <small [hidden]="tradeName.valid || tradeName.untouched" id="helpId" class="text-muted">Name must be more than 3 letters</small> -->
-  </div>
-  <div class="form-group">
-    <label for="GenericName">GenericName</label>
-    <input type="text" [(ngModel)]="Drug.genericName" required min="1" name="genericName" id="genericName"
-      class="form-control" placeholder="genericName" aria-describedby="helpId">
-    <small id="helpId" class="text-muted">Help text</small>
-  </div>
-  <div class="form-group">
-    <label for="code">Code</label>
-    <input type="text" [(ngModel)]="Drug.code" name="code" required min="1" id="code" class="form-control"
-      placeholder="code" aria-describedby="helpId">
-    <small id="helpId" class="text-muted">Help text</small>
-  </div>
-  <div class="form-group">
-    <label for="strength">Strength</label>
-    <input type="number" [(ngModel)]="Drug.strength" name="strength" required id="strength" class="form-control"
-      placeholder="strength" aria-describedby="helpId">
-    <small id="helpId" class="text-muted">Help text</small>
-  </div>
-  <div class="form-group">
-    <label for="pack">Pack</label>
-    <input type="number" [(ngModel)]="Drug.pack" name="pack" required min="1" id="pack" class="form-control"
-      placeholder="pack" aria-describedby="helpId">
-    <small id="helpId" class="text-muted">Help text</small>
-  </div>
-  <div class="form-group">
-    <label for="reOrderLevel">ReOrderLevel</label>
-    <input type="text" [(ngModel)]="Drug.reOrderLevel" name="reOrderLevel" required min="1" id="reOrderLevel"
-      class="form-control" placeholder="ReOrderLevel" aria-describedby="helpId">
-    <small id="helpId" class="text-muted">Help text</small>
-  </div>
-  <div class="form-group">
-    <label for="license">License</label>
-    <input type="text" [(ngModel)]="Drug.license" name="license" required min="1" id="license" class="form-control"
-      placeholder="license" aria-describedby="helpId">
-    <small id="helpId" class="text-muted">Help text</small>
-  </div>
 
+
+<label style=" margin-top: 30PX; font-size: 40px; color: rgb(199, 63, 10);">Add Drug</label>
+<form (ngSubmit)="SubmitDrug()" style=" margin-top: 20px; width: 950px;">
+  <div class="row">
+    <div class="form-group col">
+      <label for="TradeName" class="labelstyle">TradeName</label>
+      <input type="text" [(ngModel)]="Drug.tradeName" required minlength="3" name="TradeName" id="TradeName"
+        class="form-control" placeholder="" aria-describedby="helpId">
+      <!-- <small [hidden]="tradeName.valid || tradeName.untouched" id="helpId" class="text-muted">Name must be more than 3 letters</small> -->
+    </div>
+    <div class="form-group col">
+      <label for="GenericName" class="labelstyle">GenericName</label>
+      <input type="text" [(ngModel)]="Drug.genericName" required min="1" name="genericName" id="genericName"
+        class="form-control" placeholder="genericName" aria-describedby="helpId">
+      <!-- <small id="helpId" class="text-muted">Help text</small> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col">
+      <label for="code" class="labelstyle">Code</label>
+      <input type="text" [(ngModel)]="Drug.code" pKeyFilter="int" name="code" required min="1" id="code" class="form-control"
+        placeholder="code" aria-describedby="helpId">
+      <!-- <small id="helpId" class="text-muted">Help text</small> -->
+    </div>
+    <div class="form-group col">
+      <label for="strength" class="labelstyle">Strength</label>
+      <input type="text" [(ngModel)]="Drug.strength" pKeyFilter="int" name="strength" required id="strength" class="form-control"
+        placeholder="strength" aria-describedby="helpId">
+      <!-- <small id="helpId" class="text-muted">Help text</small> -->
+    </div>
+    <div class="form-group col">
+      <label for="pack" class="labelstyle">Pack</label>
+      <input type="text" [(ngModel)]="Drug.pack" name="pack" pKeyFilter="int" required min="1" id="pack" class="form-control"
+        placeholder="pack" aria-describedby="helpId">
+      <!-- <small id="helpId" class="text-muted">Help text</small> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col ">
+      <label for="reOrderLevel" class="labelstyle">ReOrderLevel</label>
+      <input type="text" [(ngModel)]="Drug.reOrderLevel" name="reOrderLevel" required min="1" id="reOrderLevel"
+        class="form-control" placeholder="ReOrderLevel" aria-describedby="helpId">
+      <!-- <small id="helpId" class="text-muted">Help text</small> -->
+    </div>
+    <div class="form-group col">
+      <label for="barCode" class="labelstyle">BarCode</label>
+      <input type="text" [(ngModel)]="Drug.barCode" name="barCode" required min="1" id="barCode" class="form-control"
+        placeholder="barCode" aria-describedby="helpId">
+      <!-- <small id="helpId" class="text-muted">Help text</small> -->
+    </div>
+  </div>
   <!-- <div class="form-group">
     <label for="">Imge</label>
     <input type="file" name="Price" id="prdImg" class="form-control" placeholder="" aria-describedby="helpId">
     <small id="helpId" class="text-muted">Help text</small>
   </div> -->
-
   <div class="form-group">
-    <label for="barCode">BarCode</label>
-    <input type="text" [(ngModel)]="Drug.barCode" name="barCode" required min="1" id="barCode" class="form-control"
-      placeholder="barCode" aria-describedby="helpId">
-    <small id="helpId" class="text-muted">Help text</small>
+    <label for="license" class="labelstyle">License</label>
+    <input type="text" [(ngModel)]="Drug.license" name="license" required min="1" id="license" class="form-control"
+      placeholder="license" aria-describedby="helpId">
+    <!-- <small id="helpId" class="text-muted">Help text</small> -->
   </div>
 
-  <div>
+  <!-- <div>
     <label class="image-upload-container btn btn-bwm">
       <span>Select Image</span>
-      <input #imageInput
-             type="file"
-             accept="image/*"
-             (change)="onFileSelected($event.target.files)">
+      <input #imageInput type="file" accept="image/*" class="btn btn-primary"
+      (change)="onFileSelected($event.target.files)" icon="pi pi-check"
+      style="width: 100px; background-color: blue;"
+      >
     </label>
+  </div> -->
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" style="height: 35px;">Upload</span>
+    </div>
+    <div class="custom-file">
+      <input type="file" #imageInput class="custom-file-input" accept="image/*" id="inputGroupFile01" (change)="onFileSelected($event.target.files)">
+      <label class="custom-file-label" for="inputGroupFile01" style="color: rgb(177, 20, 46);">{{imgName}}</label>
+    </div>
   </div>
 
-<label>Select Thera Group</label>
-  <select [(ngModel)]="TheraGroupID" style="width: 50%;" name="sel2" class="form-control" (change)="OnChangeGroupID($event)">Profession
-    <option value="" selected disabled hidden>Profession</option>
-    <option *ngFor="let th of Thera" value="{{th.id}}">{{th.name}}</option>
-</select> 
 
-<label>Select Thera Sub Group</label>
-<select   [(ngModel)]="Drug.TheraSubGroupID" style="width: 50%;" name="sub" class="form-control" >SubGroup
-  <option value="" selected disabled hidden>SubGroup</option>
-  <option *ngFor="let sub of TheraSub" value="{{sub.id}}">{{sub.name}}</option>
-</select>
-<label>Select Form Name</label>
-<select [(ngModel)]="Drug.FormID" name="Form" style="width: 50%;" class="form-control">Profession
-  <option value="" selected disabled hidden>Form</option>
-  <option *ngFor="let the of Form" value="{{the.id}}">{{the.name}}</option>
-</select> 
+  <div class="row">
+    <div class="col">
+      <label class="labelstyle">Select Thera Group</label>
+      <select [(ngModel)]="TheraGroupID" name="sel2" class="form-control" (change)="OnChangeGroupID($event)">Profession
+        <!-- <option value="" selected disabled hidden>Profession</option> -->
+        <option *ngFor="let th of Thera" value="{{th.id}}">{{th.name}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <label class="labelstyle">Select Thera Sub Group</label>
+      <select [(ngModel)]="Drug.TheraSubGroupID" name="sub" class="form-control">SubGroup
+        <option value="" selected disabled hidden>SubGroup</option>
+        <option *ngFor="let sub of TheraSub" value="{{sub.id}}">{{sub.name}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <label class="labelstyle">Select Form Name</label>
+      <select [(ngModel)]="Drug.FormID" name="Form" class="form-control">Profession
+        <option value="" selected disabled hidden>Form</option>
+        <option *ngFor="let the of Form" value="{{the.id}}">{{the.name}}</option>
+      </select>
+    </div>
+  </div>
 
-<label>Select Firm Name</label>
-<select [(ngModel)]="Drug.FirmID" name="firm" style="width: 50%;" class="form-control">Profession
-  <option value="" selected disabled hidden>firm</option>
-  <option *ngFor="let thhe of firm" value="{{thhe.id}}">{{thhe.name}}</option>
-</select> 
+  <div class="row">
+    <div class="col">
+      <label class="labelstyle">Select Firm Name</label>
+      <select [(ngModel)]="Drug.FirmID" name="firm" class="form-control">Profession
+        <option value="" selected disabled hidden>firm</option>
+        <option *ngFor="let thhe of firm" value="{{thhe.id}}">{{thhe.name}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <label class="labelstyle">Select Unit Name</label>
+      <select [(ngModel)]="Drug.UnitID" name="Unit" class="form-control">Profession
+        <option value="" selected disabled hidden>Unit</option>
+        <option *ngFor="let u of Unit" value="{{u.id}}">{{u.name}}</option>
+      </select>
+    </div>
+  </div>
 
-<label>Select Unit Name</label>
-<select [(ngModel)]="Drug.UnitID" name="Unit" style="width: 50%;" class="form-control">Profession
-  <option value="" selected disabled hidden>Unit</option>
-  <option *ngFor="let u of Unit" value="{{u.id}}">{{u.name}}</option>
-</select> 
-
-<label>Select Country Name</label>
-<select [(ngModel)]="Drug.CountryID" name="Country" style="width: 50%;" class="form-control">Profession
-  <option value="" selected disabled hidden>Country</option>
-  <option *ngFor="let thee of Country" value="{{thee.id}}">{{thee.name}}</option>
-</select> 
-
-<label>Select ROAD Name</label>
-<select [(ngModel)]="Drug.ROADID" name="ROAD" style="width: 50%;" class="form-control">Profession
-  <option value="" selected disabled hidden>ROAD</option>
-  <option *ngFor="let theee of ROAD" value="{{theee.id}}">{{theee.name}}</option>
-</select>
-
-  <button type="submit" [disabled]="" style="margin-top: 20px;" class="btn btn-primary" >Submit</button>
+  <div class="row">
+    <div class="col">
+  <label class="labelstyle">Select Country Name</label>
+  <select [(ngModel)]="Drug.CountryID" name="Country" class="form-control">Profession
+    <option value="" selected disabled hidden>Country</option>
+    <option *ngFor="let thee of Country" value="{{thee.id}}">{{thee.name}}</option>
+  </select>
+</div>
+<div class="col">
+  <label class="labelstyle">Select ROAD Name</label>
+  <select [(ngModel)]="Drug.ROADID" name="ROAD" class="form-control">Profession
+    <option value="" selected disabled hidden>ROAD</option>
+    <option *ngFor="let theee of ROAD" value="{{theee.id}}">{{theee.name}}</option>
+  </select>
+</div>
+</div>
+  <button type="submit" [disabled]="" style="margin-top: 20px; margin-bottom: 50px;" class="btn btn-primary">Submit</button>
 </form>
+
+
+
+<!-- 
+<label>First name</label>
+<input type="text" pInputText class="p-mr-2 p-d-inline" />
+<label>First name</label>
+<input type="text" pInputText class="p-d-inline" />
+
+  <div class="p-field p-col-12 p-md-6">
+            <label for="firstname6">Firstname</label>
+            <input id="firstname6" type="text" pInputText> 
+        </div> -->

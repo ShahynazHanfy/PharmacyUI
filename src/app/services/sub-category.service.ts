@@ -20,6 +20,9 @@ export class SubCategoryService {
   GetAllSubCategories(): Observable <SubCategory[]>{
     return this.httpClient.get<SubCategory[]> (`${environment.subCategory}`,this.httpHeader) ;
   }
+  GetAllActiveSubCategories(): Observable <SubCategory[]>{
+    return this.httpClient.get<SubCategory[]> (`${environment.subCategoryActive}`,this.httpHeader) ;
+  }
 
   insertSubCategory(subCategory: SubCategory): Observable <any>{
     console.log(subCategory+"d")

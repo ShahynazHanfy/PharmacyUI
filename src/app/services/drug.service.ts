@@ -54,6 +54,10 @@ GetAllThera(): Observable <TheraGroup[]>{
   return this.httpClient.get<TheraGroup[]> (`${environment.Thera}`,this.httpHeader) ;
 }
 
+GetAllActiveThera(): Observable <TheraGroup[]>{
+  return this.httpClient.get<TheraGroup[]> (`${environment.ActiveThera}`,this.httpHeader) ;
+}
+
 GetAllTheraSub(): Observable <TheraSubGroup[]>{
   return this.httpClient.get<TheraSubGroup[]> (`${environment.TheraSub}`,this.httpHeader) ;
 }
@@ -69,15 +73,21 @@ GetAllFirms(): Observable <Firm[]>{
   return this.httpClient.get<Firm[]> (`${environment.Firm}`,this.httpHeader) ;
 }
 
-GetAllUnits(): Observable <Unit[]>{
-  return this.httpClient.get<Unit[]> (`${environment.Unit}`,this.httpHeader) ;
+GetAllActiveUnits(): Observable <Unit[]>{
+  return this.httpClient.get<Unit[]> (`${environment.ActiveUnit}`,this.httpHeader) ;
 }
 
+GetAllActiveCountry(): Observable <Country[]>{
+  return this.httpClient.get<Country[]> (`${environment.ActiveCountry}`,this.httpHeader) ;
+}
 GetAllCountry(): Observable <Country[]>{
   return this.httpClient.get<Country[]> (`${environment.Country}`,this.httpHeader) ;
 }
 GetAllROAD(): Observable <ROAD[]>{
   return this.httpClient.get<ROAD[]> (`${environment.ROAD}`,this.httpHeader) ;
+}
+GetAllActiveROAD(): Observable <ROAD[]>{
+  return this.httpClient.get<ROAD[]> (`${environment.ActiveROAD}`,this.httpHeader) ;
 }
 
 postFile(fileToUpload: File): Observable<boolean> {
@@ -93,5 +103,76 @@ getDrugByID(drugID: number): Observable <Drug>{
   console.log(drugID+"hhhh")
   return this.httpClient.get<Drug> (`${environment.Drug}${drugID}`,this.httpHeader) ;
 }
+
+
+
+getProductsSmall() {
+  return this.httpClient.get<any>('assets/products-small.json')
+  .toPromise()
+  .then(res => <Drug[]>res.data)
+  .then(data => { return data; });
+}
+
+getProducts() {
+  return this.httpClient.get<any>('assets/products.json')
+  .toPromise()
+  .then(res => <Drug[]>res.data)
+  .then(data => { return data; });
+}
+
+// getProductsWithOrdersSmall() {
+//   return this.httpClient.get<any>('assets/products-orders-small.json')
+//   .toPromise()
+//   .then(res => <Product[]>res.data)
+//   .then(data => { return data; });
+// }
+
+// generatePrduct(): Drug {
+//   const product: Drug =  {
+//       id: this.generateId(),
+//       name: this.generateName(),
+//       description: "Product Description",
+//       price: this.generatePrice(),
+//       quantity: this.generateQuantity(),
+//       category: "Product Category",
+//       inventoryStatus: this.generateStatus(),
+//       rating: this.generateRating()
+//   };
+
+//   product.image = product.name.toLocaleLowerCase().split(/[ ,]+/).join('-')+".jpg";;
+//   return product;
+// }
+
+generateId() {
+  let text = "";
+  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+  for (var i = 0; i < 5; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  
+  return text;
+}
+
+// generateName() {
+//   return this.productNames[Math.floor(Math.random() * Math.floor(30))];
+// }
+
+generatePrice() {
+  return Math.floor(Math.random() * Math.floor(299)+1);
+}
+
+generateQuantity() {
+  return Math.floor(Math.random() * Math.floor(75)+1);
+}
+
+// generateStatus() {
+//   return this.status[Math.floor(Math.random() * Math.floor(3))];
+// }
+
+generateRating() {
+  return Math.floor(Math.random() * Math.floor(5)+1);
+}
+
 
 }

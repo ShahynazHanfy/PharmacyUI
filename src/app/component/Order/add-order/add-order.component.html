@@ -1,0 +1,127 @@
+<div class="card">
+    <!-- <h5>ADDING ORDERS</h5> -->
+    <p-tabView>
+        <p-tabPanel header="IN ORDER" leftIcon="pi pi-home" rightIcon="pi pi-calendar" tooltip="1972" class="header">
+            <div class="row">
+
+                <div style="width: 40%;" class="col-8">
+                    <p-orderList [value]="DrugExistAfterElementDeleted" [listStyle]="{'height':'auto'}"
+                        header="List of Drugs" filterBy="name" filterPlaceholder="Filter by name" dragdrop="true">
+                        <ng-template let-DrugExistAfterElementDeleted pTemplate="item">
+                            <div class="Drug-item">
+                                <div class="image-container">
+                                    <img src="http://localhost:51563/api/drugs/getImage/{{DrugExistAfterElementDeleted.img}}"
+                                        alt="" style="width: 90px ;height: 50px;">
+                                    <!-- <img src="assets/showcase/images/demo/Drug/{{Drug.image}}" [alt]="Drug.name" class="Drug-image" /> -->
+                                </div>
+                                <div class="Drug-list-detail row">
+                                    <h2 class="p-mb-2" style="color: black;">{{DrugExistAfterElementDeleted.tradeName}}
+                                    </h2>
+                                    <!-- <h5 class="p-mb-2">{{drugs.genericName}}</h5> -->
+                                    <i class="pi pi-tag Drug-category-icon col"></i>
+                                    <!-- <span class="Drug-category col">{{drugs.tradeName}}</span> -->
+                                    <!-- <input type="text" name="" id="" placeholder="Pack Number" class="form-control col"
+                                        style="margin-right: 5px;"> -->
+                                    <input type="text" name="quentity" id={{DrugExistAfterElementDeleted.id}}
+                                        placeholder="quentity" class="form-control col" style="margin-right: 5px;">
+                                    <input type="date"  name="prod_Date" id="prod_Date" 
+                                        class="form-control col" style="margin-right: 5px;">
+                                    <input type="date"  name="exp_Date" id="exp_Date" 
+                                        class="form-control col" style="margin-right: 5px;">
+                                    <!-- <button class="btn btn-primary" style="height: 40px;" value="Save" ></button> -->
+                                    <input id="tt" type="button"
+                                        class="btn btn-primary" style="height: 40px;" value="Save"
+                                        (click)="saveDrug(DrugExistAfterElementDeleted.id)">      
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-orderList>
+                    <div class="row">
+                        <!-- <label for="" class="lab col" >Date</label> -->
+                        <label for="" class="col">Date</label><input type="date" [(ngModel)]="order.date" name="date" id="date" class="form-control labinput col">
+                        <!-- <label for="" class="col">Order Number</label><input type="text" class="form-control labinput col"> -->
+                        <!-- <label for="" class="col">Order Number</label><input type="text" class="form-control labinput col"> -->
+                    </div>
+                    <div class="row">
+                        <!-- <label for="" class="lab col" >Date</label> -->
+                        <textarea pInputTextarea  [(ngModel)]="order.description" name="description" id="description">Description</textarea>
+                        
+                        <textarea pInputTextarea  [(ngModel)]="order.comments" name="comments" id="comments">Comments</textarea>
+                        <!-- <input type="text" [(ngModel)]="order.comments" required minlength="3" name="Comments" id="Comments" -->
+                        <!-- class="form-control" placeholder="" aria-describedby="helpId"> -->
+                        <!-- <label for="" class="col">Descrio</label><input type="date" class="form-control labinput col"> -->
+                        <label for="" class="col" >Order Number</label>
+                        <input type="text" class="form-control labinput col" [(ngModel)]="order.number" name="number" id="number">
+                        <!-- <label for="" class="col">Order Number</label><input type="text" class="form-control labinput col"> -->
+                    </div>
+                </div>
+                <div class="col-4">
+                    <p-table [value]="DrugAdded">
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                DrugAdded
+                                <p-button icon="pi pi-refresh"></p-button>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-DrugAdded>
+                            <tr>
+                                <td>{{DrugAdded.tradeName}}</td>
+                                <td>
+                                    <img src="http://localhost:51563/api/drugs/getImage/{{DrugAdded.img}}" alt=""
+                                        style="width: 90px ;height: 50px;">
+                                </td>
+                                <td>
+                                    <i class="pi pi-trash iconB" style="margin-left: 50px;"
+                                        (click)="deleteFromAddedList(DrugAdded.id)"></i>
+                                </td>
+                                <!-- <td>{{DrugAdded.pack}}</td>
+                                    <td>{{DrugAdded.pack}}</td> -->
+                                <!-- <td>
+                                    <p-rating [ngModel]="DrugAdded.strength" [readonly]="true" [cancel]="false">
+                                    </p-rating>
+                                </td> -->
+                                <!-- <td><span [class]="'product-badge status-' + product.pack.toLowerCase()">{{DrugAdded.pack}}</span></td> -->
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="summary">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                In total there are {{DrugAdded ? DrugAdded.length : 0 }} products.
+                            </div>
+                        </ng-template>
+                    </p-table>
+
+                </div>
+
+                <input type="button" class="btn btn-primary" value="Save Order" (click)="saveOrder()">
+                
+            </div>
+        </p-tabPanel>
+
+
+
+
+        <p-tabPanel header="OUT ORDER" leftIcon="pi pi-arrow-left" rightIcon="pi pi-inbox" tooltip="1974">
+            <div class="col">
+                <label class="labelstyle">Select Form Name</label>
+                <select [(ngModel)]="ExistDrugs.id" name="Form" class="form-control">Profession
+                  <option value="" selected disabled hidden>Form</option>
+                  <option *ngFor="let the of ExistDrugs" value="{{the.id}}">{{the.name}}</option>
+                </select>
+              </div>
+        </p-tabPanel>
+        <p-tabPanel header="TRANSFER ORDER" leftIcon="pi pi-play" rightIcon="pi pi-pause" tooltip="1990">
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+                atque corrupti quos dolores et quas molestias excepturi sint occaecati
+                cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et
+                dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+                Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+        </p-tabPanel>
+        <p-tabPanel header="LOSE ORDER" leftIcon="pi pi-user" rightIcon="pi pi-star" tooltip="1990">
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+                atque corrupti quos dolores et quas molestias excepturi sint occaecati
+                cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et
+                dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+                Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+        </p-tabPanel>
+    </p-tabView>
+</div>

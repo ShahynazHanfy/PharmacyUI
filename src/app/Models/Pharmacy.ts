@@ -5,4 +5,6 @@ export class Pharmacy {
     telephone: string;
     Email: string;
     location:number;
+    IsActive:boolean;
+
   }

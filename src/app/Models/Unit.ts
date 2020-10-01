@@ -7,4 +7,6 @@ export class Unit {
     Telephone:number;
     Email:string;
     Rate:number;
+    IsActive:boolean;
+
   }
