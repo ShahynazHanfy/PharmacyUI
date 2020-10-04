@@ -18,7 +18,8 @@ export class OrderService {
   GetAll(): Observable <Order[]>{
     return this.httpClient.get<Order[]> (`${environment.order}`,this.httpHeader) ;
 }
-insertDrug(Order: Order): Observable <any >{
+
+insertOrder(Order: Order): Observable <any >{
   console.log(Order+"d")
   return this.httpClient.post<any> (`${environment.order}`,Order,this.httpHeader) ;
 }

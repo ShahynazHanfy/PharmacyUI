@@ -12,6 +12,9 @@ import{Unit} from './../Models/Unit'
 import{ROAD} from './../Models/ROAD'
 import{Country} from './../Models/Country'
 import { map } from 'rxjs/operators';
+import{Pharmacy} from '../Models/Pharmacy'
+import{Pledge} from '../Models/Pledge'
+import{Supplier} from '../Models/Supplier'
 
 @Injectable({
   providedIn: 'root'
@@ -104,8 +107,6 @@ getDrugByID(drugID: number): Observable <Drug>{
   return this.httpClient.get<Drug> (`${environment.Drug}${drugID}`,this.httpHeader) ;
 }
 
-
-
 getProductsSmall() {
   return this.httpClient.get<any>('assets/products-small.json')
   .toPromise()
@@ -119,7 +120,18 @@ getProducts() {
   .then(res => <Drug[]>res.data)
   .then(data => { return data; });
 }
+GetAllPharmacies(): Observable <Pharmacy[]>{
+  return this.httpClient.get<Pharmacy[]> (`${environment.pharmacy}`,this.httpHeader) ;
+}
 
+GetAllPledges(): Observable <Pledge[]>{
+  return this.httpClient.get<Pledge[]> (`${environment.pledge}`,this.httpHeader) ;
+}
+
+
+GetAllSuppliers(): Observable <Supplier[]>{
+  return this.httpClient.get<Supplier[]> (`${environment.supplier}`,this.httpHeader) ;
+}
 // getProductsWithOrdersSmall() {
 //   return this.httpClient.get<any>('assets/products-orders-small.json')
 //   .toPromise()

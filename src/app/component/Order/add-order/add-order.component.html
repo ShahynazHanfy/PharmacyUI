@@ -24,34 +24,37 @@
                                         style="margin-right: 5px;"> -->
                                     <input type="text" name="quentity" id={{DrugExistAfterElementDeleted.id}}
                                         placeholder="quentity" class="form-control col" style="margin-right: 5px;">
-                                    <input type="date"  name="prod_Date" id="prod_Date" 
-                                        class="form-control col" style="margin-right: 5px;">
-                                    <input type="date"  name="exp_Date" id="exp_Date" 
-                                        class="form-control col" style="margin-right: 5px;">
+                                    <input type="date" name="prod_Date" id="prod_Date" class="form-control col"
+                                        style="margin-right: 5px;">
+                                    <input type="date" name="exp_Date" id="exp_Date" class="form-control col"
+                                        style="margin-right: 5px;">
                                     <!-- <button class="btn btn-primary" style="height: 40px;" value="Save" ></button> -->
-                                    <input id="tt" type="button"
-                                        class="btn btn-primary" style="height: 40px;" value="Save"
-                                        (click)="saveDrug(DrugExistAfterElementDeleted.id)">      
+                                    <input id="tt" type="button" class="btn btn-primary" style="height: 40px;"
+                                        value="Save" (click)="saveDrug(DrugExistAfterElementDeleted.id)">
                                 </div>
                             </div>
                         </ng-template>
                     </p-orderList>
                     <div class="row">
                         <!-- <label for="" class="lab col" >Date</label> -->
-                        <label for="" class="col">Date</label><input type="date" [(ngModel)]="order.date" name="date" id="date" class="form-control labinput col">
+                        <label for="" class="col">Date</label><input type="date" [(ngModel)]="order.date" name="date"
+                            id="date" class="form-control labinput col">
                         <!-- <label for="" class="col">Order Number</label><input type="text" class="form-control labinput col"> -->
                         <!-- <label for="" class="col">Order Number</label><input type="text" class="form-control labinput col"> -->
                     </div>
                     <div class="row">
                         <!-- <label for="" class="lab col" >Date</label> -->
-                        <textarea pInputTextarea  [(ngModel)]="order.description" name="description" id="description">Description</textarea>
-                        
-                        <textarea pInputTextarea  [(ngModel)]="order.comments" name="comments" id="comments">Comments</textarea>
+                        <textarea pInputTextarea [(ngModel)]="order.description" name="description"
+                            id="description">Description</textarea>
+
+                        <textarea pInputTextarea [(ngModel)]="order.comments" name="comments"
+                            id="comments">Comments</textarea>
                         <!-- <input type="text" [(ngModel)]="order.comments" required minlength="3" name="Comments" id="Comments" -->
                         <!-- class="form-control" placeholder="" aria-describedby="helpId"> -->
                         <!-- <label for="" class="col">Descrio</label><input type="date" class="form-control labinput col"> -->
-                        <label for="" class="col" >Order Number</label>
-                        <input type="text" class="form-control labinput col" [(ngModel)]="order.number" name="number" id="number">
+                        <label for="" class="col">Order Number</label>
+                        <input type="text" class="form-control labinput col" [(ngModel)]="order.number" name="number"
+                            id="number">
                         <!-- <label for="" class="col">Order Number</label><input type="text" class="form-control labinput col"> -->
                     </div>
                 </div>
@@ -89,18 +92,12 @@
                             </div>
                         </ng-template>
                     </p-table>
-
                 </div>
-
-                <input type="button" class="btn btn-primary" value="Save Order" (click)="saveOrder()">
-                
+                <!-- <input type="button" class="btn btn-primary" value="Save Order"> -->
             </div>
         </p-tabPanel>
 
-
-
-
-        <p-tabPanel header="OUT ORDER" leftIcon="pi pi-arrow-left" rightIcon="pi pi-inbox" tooltip="1974">
+        <!-- <p-tabPanel header="OUT ORDER" leftIcon="pi pi-arrow-left" rightIcon="pi pi-inbox" tooltip="1974">
             <div class="col">
                 <label class="labelstyle">Select Form Name</label>
                 <select [(ngModel)]="ExistDrugs.id" name="Form" class="form-control">Profession
@@ -108,14 +105,118 @@
                   <option *ngFor="let the of ExistDrugs" value="{{the.id}}">{{the.name}}</option>
                 </select>
               </div>
-        </p-tabPanel>
+        </p-tabPanel> -->
+
         <p-tabPanel header="TRANSFER ORDER" leftIcon="pi pi-play" rightIcon="pi pi-pause" tooltip="1990">
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-                atque corrupti quos dolores et quas molestias excepturi sint occaecati
-                cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et
-                dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-                Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+           
+            <div>
+                <!-- <h5>Addons</h5> -->
+                <div class="p-grid p-fluid row">
+                    <div class="p-col-12 p-md-4">
+                        <p-dropdown [options]="ExistDrugs" [(ngModel)]="selectedDrug" optionLabel="tradeName"
+                        [filter]="true" [showClear]="true" placeholder="Select a Drug">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="country-item country-item-value" *ngIf="selectedDrug">
+                                <!-- <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + selectedDrug.tradeName.toLowerCase()" /> -->
+                                <div>{{selectedDrug.tradeName}}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-item>
+                            <div class="country-item">
+                                <!-- <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.tradeName.toLowerCase()" /> -->
+                                <div>{{item.tradeName}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                    </div>
+
+                    <div class="p-col-10 p-md-4">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">$</span>
+                            <input type="text" pInputText placeholder="Price" [(ngModel)]="orderDetailObj.price">
+                            <span class="p-inputgroup-addon">.00</span>
+                        </div>
+                    </div>
+
+
+                    <div class="p-col-12 p-md-4">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">%</span>
+                            <input type="text" pInputText placeholder=" Quentity" [(ngModel)]="orderDetailObj.quentity">
+                            <!-- <span class="p-inputgroup-addon">.00</span> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="labelstyle">Select Phrmacy Name</label>
+                    <select [(ngModel)]="order.pharmacyID" name="pharmacy" class="form-control">Profession
+                        <option value="" selected disabled hidden>firm</option>
+                        <option *ngFor="let thhe of pharmacy" value="{{thhe.id}}">{{thhe.name}}</option>
+                    </select>
+                </div>
+
+                <!-- <div class="col">
+                    <label class="labelstyle">Select Pledge Name</label>
+                    <select [(ngModel)]="order.pledgeID" name="pledge" class="form-control">Profession
+                        <option value="" selected disabled hidden>firm</option>
+                        <option *ngFor="let thhe of pledge" value="{{thhe.id}}">{{thhe.name}}</option>
+                    </select>
+                </div> -->
+
+                <div class="col">
+                    <label class="labelstyle">Select Supplier Name</label>
+                    <select [(ngModel)]="order.supplierID" name="supplier" class="form-control">Profession
+                        <option value="" selected disabled hidden>firm</option>
+                        <option *ngFor="let thhe of supplier" value="{{thhe.id}}">{{thhe.name}}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group col">
+                <label for="number" class="labelstyle">Order Number</label>
+                <input type="text" [(ngModel)]="order.number" name="number" pKeyFilter="int" required min="1"
+                    id="number" class="form-control" placeholder="Order Number" aria-describedby="helpId">
+                <!-- <small id="helpId" class="text-muted">Help text</small> -->
+            </div>
+            
+            <div class="row">
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="basic">Exp_Date</label>
+                    <p-calendar inputId="basic" [(ngModel)]="orderDetailObj.prod_Date"></p-calendar>
+                </div>
+                <div class="p-field p-col-12 p-md-4">
+                    <label for="basic">Prod_Date</label>
+                    <p-calendar inputId="basic" [(ngModel)]="orderDetailObj.exp_Date"></p-calendar>
+                </div>
+            </div>
+            <div>
+                <textarea rows="5" cols="30" pInputTextarea placeholder="Comments" [(ngModel)]="order.comments"
+                    style="margin-bottom: 20px;"></textarea>
+
+            </div>
+
+            <input type="button" (click)="saveOrderList()" value="Add" class="btn btn-success">
+
+            <!-- <div class="p-field p-col-12 p-md-3">
+                <label for="horizontal">Horizontal with Step</label>
+                <p-inputNumber [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="0.25"
+                decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="currency" currency="EUR">
+                </p-inputNumber>
+            </div>
+
+            <div class="p-field p-col-12 p-md-3">
+                <label for="minmax-buttons">Min-Max Boundaries</label>
+                <p-inputNumber mode="decimal" [showButtons]="true" inputId="minmax-buttons" [min]="0" [max]="100">
+                </p-inputNumber>
+            </div>
+            <i class="pi pi-times" incrementButtonIcon="pi pi-plus"></i> -->
         </p-tabPanel>
+
+
         <p-tabPanel header="LOSE ORDER" leftIcon="pi pi-user" rightIcon="pi pi-star" tooltip="1990">
             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
                 atque corrupti quos dolores et quas molestias excepturi sint occaecati

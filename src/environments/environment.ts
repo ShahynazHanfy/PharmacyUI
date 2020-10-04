@@ -26,6 +26,12 @@ export const environment = {
   subCategoryActive:'http://localhost:51563/api/SubCategories/activeSubCategory',
   form:'http://localhost:51563/api/Forms',
   order:'http://localhost:51563/api/Orders',
+  pharmacy: 'http://localhost:51563/api/drugs/pharmacy',
+  pledge: 'http://localhost:51563/api/drugs/pledge',
+  supplier: 'http://localhost:51563/api/drugs/Supplier',
+
+
+
 
 
 

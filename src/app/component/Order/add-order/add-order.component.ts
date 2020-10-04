@@ -6,6 +6,11 @@ import { Order } from '../../../Models/Order'
 import { OrderService} from '../../../services/order.service'
 import { error } from '@angular/compiler/src/util';
 import{OrderDetails} from '../../../Models/OrderDetails'
+import { Pharmacy } from 'src/app/Models/Pharmacy';
+import { Pledge } from 'src/app/Models/Pledge';
+import { Supplier } from 'src/app/Models/Supplier';
+
+
 @Component({
   selector: 'app-add-order',
   templateUrl: './add-order.component.html',
@@ -13,7 +18,7 @@ import{OrderDetails} from '../../../Models/OrderDetails'
 })
 export class AddOrderComponent implements OnInit {
 
-  ExistDrugs: Drug[];
+  ExistDrugs: any;
   drug: Drug
   drug1: Drug
   DrugAdded: Drug[]
@@ -23,7 +28,14 @@ export class AddOrderComponent implements OnInit {
   orderDetailObj :OrderDetails;
   newOrder:Order
   newOrderDetails:OrderDetails[]
+  selectedDrug:Drug
+  orderDetails:OrderDetails[]
+  pharmacy:Pharmacy[]
+  pledge:Pledge[]
+  supplier:Supplier[]
 
+
+  
   // checked:boolean=true
   DrugExistAfterElementDeleted: Drug[]
   constructor(private drugService: DrugService,private orderService:OrderService) {
@@ -34,7 +46,8 @@ export class AddOrderComponent implements OnInit {
     this.drugService.GetAll().subscribe(drugs => {
     this.ExistDrugs = drugs, console.log(this.ExistDrugs),
     this.DrugExistAfterElementDeleted = this.ExistDrugs
-  
+    this.orderDetails = []
+    this.pharmacy=[]
     
     });
   }
@@ -49,15 +62,35 @@ export class AddOrderComponent implements OnInit {
       pharmacyID: 0, pledgeID: 0, supplierID: 0,orderDetailList:[],id:0
       
     }
-    this.orderDetailObj={
+    this.orderDetailObj = {
       quentity:0,price:0,orderId:0,drugId:0,exp_Date:new Date(),prod_Date:new Date()
     }
-    this.drugService.GetAll().subscribe(drugs => {
-      this.ExistDrugs = drugs, console.log(this.ExistDrugs),
-      this.DrugExistAfterElementDeleted = this.ExistDrugs 
-      });
+    this.drugService.GetAllPharmacies()
+    .subscribe(pharmacy => {
+      this.pharmacy=pharmacy
+      console.log("pharmacies"+this.pharmacy)
+    })
+
+    this.drugService.GetAllPledges().subscribe(pledge=>{
+      this.pledge = pledge
+    })
+    this.drugService.GetAllSuppliers().subscribe(supplier=>{
+      this.supplier = supplier
+    })
+    
+        this.drugService.GetAll()
+        .subscribe(drugs => {
+          this.ExistDrugs = drugs,
+          console.log(drugs)
+      }
+        ,error=>
+        {
+          console.log(error);
+        }) ;
+
+
     console.log(this.DrugExistAfterElementDeleted)
-    console.log(this.order)
+    // console.log(this.order)
   }
   saveDrug(id) {
     console.log(id)
@@ -98,7 +131,7 @@ console.log(exp_Date.value)
       // this.DrugAdded.splice(this.DrugAdded.indexOf(drug), 1) 
     })
     // this.drug.IsChecked = !this.drug.IsChecked
-  }
+      }
   deleteFromAddedList(id) {
     console.log(id)
     this.drugService.getDrugByID(id).subscribe(drug => {
@@ -114,28 +147,50 @@ console.log(exp_Date.value)
       //   this.DrugAdded.splice(this.DrugAdded.indexOf(this.drug1), 1) 
     })
   }
-  saveOrder(){
-    // console.log(this.DrugAdded)
-    this.order.number=Number(this.order.number);
-    for(var i=0;i<  this.DrugAdded.length;i++)
-    {
-       this.orderDetailObj = {
-      drugId: this.DrugAdded[i].id,
-      prod_Date:this.DrugAdded[i].prod_Date,
-      price: this.DrugAdded[i].price,
-      exp_Date:this.DrugAdded[i].exp_Date,
-      quentity:this.DrugAdded[i].quentity,
-      orderId:this.order.id
-      };
-      this.order.orderDetailList.push(this.orderDetailObj);
-    }
 
-//this.order.orderDetailList=this.DrugAdded
-    // console.log(this.DrugAdded)
-    console.log(this.order)
-    this.orderService.insertDrug(this.order).subscribe(d=>{
-      console.log(d)
-    })
+//   saveOrder(){
+//     // console.log(this.DrugAdded)
+//     // this.order.number=Number(this.order.number);
+//     for(var i=0;i<  this.DrugAdded.length;i++)
+//     {
+//        this.orderDetailObj = {
+//       drugId: this.DrugAdded[i].id,
+//       prod_Date:this.DrugAdded[i].prod_Date,
+//       price: this.DrugAdded[i].price,
+//       exp_Date:this.DrugAdded[i].exp_Date,
+//       quentity:this.DrugAdded[i].quentity,
+//       orderId:this.order.id
+//       };
+//       this.order.orderDetailList.push(this.orderDetailObj);
+//     }
+
+    
+
+// //this.order.orderDetailList=this.DrugAdded
+//     // console.log(this.DrugAdded)
+//     console.log(this.order)
+//     this.orderService.insertDrug(this.order).subscribe(d=>{
+//       console.log(d)
+//     })
+//   }
+
+  saveOrderList(){
+    console.log(this.selectedDrug)
+   this.order.number=Number(this.order.number) 
+   this.orderDetailObj.quentity=Number(this.orderDetailObj.quentity) 
+   this.orderDetailObj.price=Number(this.orderDetailObj.price) 
+   this.order.pharmacyID=Number(this.order.pharmacyID) 
+   this.order.supplierID=Number(this.order.supplierID) 
+   this.orderDetailObj.drugId= this.selectedDrug.id
+   this.orderDetails.push(this.orderDetailObj)
+   this.order.orderDetailList=this.orderDetails
+   console.log("orderDetailsObj"+this.orderDetailObj)
+   console.log("orderDetails"+this.orderDetails)
+  this.orderService.insertOrder(this.order).subscribe(order=>{
+    console.log(order)
+  })
+  
+   console.log(this.order)
   }
 
 }
