@@ -7,5 +7,7 @@ export class OrderDetails {
      prod_Date :Date;
      exp_Date :Date;
      orderId :number;
+     tradeName:string;
+     img:string
 }
     

@@ -33,6 +33,7 @@ export class AddOrderComponent implements OnInit {
   pharmacy:Pharmacy[]
   pledge:Pledge[]
   supplier:Supplier[]
+  selectedDrugName:string
 
 
   
@@ -48,22 +49,23 @@ export class AddOrderComponent implements OnInit {
     this.DrugExistAfterElementDeleted = this.ExistDrugs
     this.orderDetails = []
     this.pharmacy=[]
+
     
     });
   }
   ngOnInit() {
     this.order = {
-      code: '', comments: '', date: new Date(), description: '', number: 0, pharmacyDeliverdID: 0,
+      code: '', comments: '', date: new Date(), description: '', number: 0, pharmacyDeliverdID: 2,
       pharmacyID: 0, pledgeID: 0, supplierID: 0,orderDetailList:[],id:0
       
     }
     this.newOrder = {
-      code: '', comments: '', date: new Date(), description: '', number: 0, pharmacyDeliverdID: 0,
+      code: '', comments: '', date: new Date(), description: '', number: 0, pharmacyDeliverdID: 2,
       pharmacyID: 0, pledgeID: 0, supplierID: 0,orderDetailList:[],id:0
       
     }
     this.orderDetailObj = {
-      quentity:0,price:0,orderId:0,drugId:0,exp_Date:new Date(),prod_Date:new Date()
+      quentity:0,price:0,orderId:0,drugId:0,exp_Date:new Date(),prod_Date:new Date(),tradeName:'',img:''
     }
     this.drugService.GetAllPharmacies()
     .subscribe(pharmacy => {
@@ -175,22 +177,45 @@ console.log(exp_Date.value)
 //   }
 
   saveOrderList(){
-    console.log(this.selectedDrug)
-   this.order.number=Number(this.order.number) 
-   this.orderDetailObj.quentity=Number(this.orderDetailObj.quentity) 
-   this.orderDetailObj.price=Number(this.orderDetailObj.price) 
+  console.log("This is selected drug"+this.selectedDrug)
+  // this.orderDetailObj.quentity=Number(this.orderDetailObj.quentity)
    this.order.pharmacyID=Number(this.order.pharmacyID) 
    this.order.supplierID=Number(this.order.supplierID) 
-   this.orderDetailObj.drugId= this.selectedDrug.id
-   this.orderDetails.push(this.orderDetailObj)
+  this.order.number=Number(this.order.number)
    this.order.orderDetailList=this.orderDetails
    console.log("orderDetailsObj"+this.orderDetailObj)
    console.log("orderDetails"+this.orderDetails)
-  this.orderService.insertOrder(this.order).subscribe(order=>{
+   this.orderService.insertOrder(this.order).subscribe(order=>{
     console.log(order)
   })
   
    console.log(this.order)
   }
+  SaveToList(){
+    this.orderDetailObj.drugId= this.selectedDrug.id
+    this.orderDetailObj.img=this.selectedDrug.img
+  this.order.number=Number(this.order.number)
+  this.orderDetailObj.quentity=Number(this.orderDetailObj.quentity)
+  this.orderDetailObj.price=Number(this.orderDetailObj.price) 
+    this.orderDetailObj.tradeName=this.selectedDrug.tradeName
+    this.orderDetails.push(this.orderDetailObj)
+    console.log("order Detail obj"+this.orderDetailObj)
+    this.selectedDrug=
+    {
+    IsActive:true,code:'',price:0,CountryID:0,FirmID:0,FormID:0,IsChecked:true,ROADID:0,
+    TheraSubGroupID:0,UnitID:0,barCode:'',exp_Date: new Date(),genericName:'',id:0,img:'',
+    license:'',pack:'',prod_Date:new Date(),quentity:0,reOrderLevel:'',strength:'',tradeName:''
+    }
+    
+    this.drugService.GetAll()
+    .subscribe(d=> {
+      this.ExistDrugs=d
+    })
+    this.orderDetailObj = {
+      quentity:0,price:0,orderId:0,drugId:0,exp_Date:new Date(),prod_Date:new Date(),img:'',tradeName:''
+    }
+    console.log(this.orderDetails)
+  }
+  
 
 }
