@@ -68,7 +68,10 @@ import { AddOrderComponent } from './component/Order/add-order/add-order.compone
 // import { RrComponent } from './component/form/form.component';
 import {PickListModule} from 'primeng/picklist';
 import {OrderListModule} from 'primeng/orderlist';
-import {OrderDetails} from '../app/Models/OrderDetails'
+import {OrderDetails} from '../app/Models/OrderDetails';
+import { EmployeeComponent } from './component/Employee/emplyee/employee.component';
+import { EmployeeService } from './services/employee.service';
+import { AllUserComponent } from './component/Users/all-user/all-user.component';
 
 
 @NgModule({
@@ -88,7 +91,9 @@ import {OrderDetails} from '../app/Models/OrderDetails'
     // RrComponent,
     FormComponent,
     ShowOrderComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    EmployeeComponent,
+    AllUserComponent,
     
   ],
   imports: [
@@ -131,10 +136,11 @@ import {OrderDetails} from '../app/Models/OrderDetails'
     SplitButtonModule,
     AutoCompleteModule,
     InputSwitchModule,
+    
     // ConfirmationService,
     RouterModule.forRoot([])
   ],
-  providers: [DrugService,MessageService,ConfirmationService,],
+  providers: [DrugService,MessageService,ConfirmationService,EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

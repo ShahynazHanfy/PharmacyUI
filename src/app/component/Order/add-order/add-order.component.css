@@ -50,7 +50,9 @@ display: none;
    
 
 /* } */
-
+:host>>>.p-button.p-component.p-button-icon-only.p-ripple{
+    display: none;
+}
 @media screen and (max-width: 576px) {
     :host>>>.product-item {
         flex-wrap: wrap;

@@ -109,8 +109,10 @@ export class NavBarComponent implements OnInit {
     },
     
     {
-        label:'Quit',
-        icon:'pi pi-fw pi-power-off'
+        label:'Employees',
+        icon:'pi pi-fw pi-power-off',
+        routerLink: ['employee'],
+
     }
 ];
 

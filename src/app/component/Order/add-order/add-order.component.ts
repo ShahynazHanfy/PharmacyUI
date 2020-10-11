@@ -34,6 +34,8 @@ export class AddOrderComponent implements OnInit {
   pledge:Pledge[]
   supplier:Supplier[]
   selectedDrugName:string
+  selectedsource:any=null
+  selectedTarget:any=null
 
 
   
@@ -49,6 +51,7 @@ export class AddOrderComponent implements OnInit {
     this.DrugExistAfterElementDeleted = this.ExistDrugs
     this.orderDetails = []
     this.pharmacy=[]
+  
 
     
     });
@@ -88,9 +91,9 @@ export class AddOrderComponent implements OnInit {
         ,error=>
         {
           console.log(error);
-        }) ;
-
-
+        });
+       
+// this.selectedsource = "pharmacy"
     console.log(this.DrugExistAfterElementDeleted)
     // console.log(this.order)
   }
@@ -175,28 +178,33 @@ console.log(exp_Date.value)
 //       console.log(d)
 //     })
 //   }
+changeEvent(){
+  console.log(this.selectedsource)
 
+}
   saveOrderList(){
   console.log("This is selected drug"+this.selectedDrug)
   // this.orderDetailObj.quentity=Number(this.orderDetailObj.quentity)
    this.order.pharmacyID=Number(this.order.pharmacyID) 
    this.order.supplierID=Number(this.order.supplierID) 
   this.order.number=Number(this.order.number)
+  // if(true){
+  //   this.order.pledgeID=null
+  // }
    this.order.orderDetailList=this.orderDetails
    console.log("orderDetailsObj"+this.orderDetailObj)
    console.log("orderDetails"+this.orderDetails)
    this.orderService.insertOrder(this.order).subscribe(order=>{
     console.log(order)
   })
-  
+
    console.log(this.order)
-  }
+   }
   SaveToList(){
     this.orderDetailObj.drugId= this.selectedDrug.id
     this.orderDetailObj.img=this.selectedDrug.img
-  this.order.number=Number(this.order.number)
-  this.orderDetailObj.quentity=Number(this.orderDetailObj.quentity)
-  this.orderDetailObj.price=Number(this.orderDetailObj.price) 
+    this.orderDetailObj.quentity=Number(this.orderDetailObj.quentity)
+    this.orderDetailObj.price=Number(this.orderDetailObj.price) 
     this.orderDetailObj.tradeName=this.selectedDrug.tradeName
     this.orderDetails.push(this.orderDetailObj)
     console.log("order Detail obj"+this.orderDetailObj)
@@ -215,6 +223,15 @@ console.log(exp_Date.value)
       quentity:0,price:0,orderId:0,drugId:0,exp_Date:new Date(),prod_Date:new Date(),img:'',tradeName:''
     }
     console.log(this.orderDetails)
+    console.log(this.selectedsource)
+  }
+
+
+  deleteDrugFromList(drugDetails){
+    console.log(this.orderDetails)
+    console.log(drugDetails)
+    this.orderDetails.splice(this.orderDetails.indexOf(drugDetails), 1);  
+    console.log("After removing 1: " + this.orderDetails );  
   }
   
 

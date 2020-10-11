@@ -55,8 +55,10 @@
                             <!-- <span class="p-inputgroup-addon">.00</span> -->
                         </div>
                     </div>
-                    <input type="button" name="AddToList" id="AddToList" value="Add To List" class="btn btn-primary"
-                        (click)="SaveToList()">
+                    <!-- <input type="button" name="AddToList" id="AddToList" value="Add To List" class="btn btn-primary"
+                        (click)="SaveToList()"> -->
+                    <button class="btn btn-primary" (click)="SaveToList()"
+                        style="width: 150px; height: 50px; margin-top: 23px;">Save Drug To List</button>
                 </div>
             </div>
 
@@ -70,35 +72,69 @@
                     <p-calendar inputId="basic" [(ngModel)]="orderDetailObj.exp_Date"></p-calendar>
                 </div>
             </div>
-
             <div class="row">
+
                 <div class="col">
+                <label for="" style="color: rgb(180, 15, 15); font-size: 30px;">From</label>
+
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="city" value="Pharmacy" [(ngModel)]="selectedsource">
+                        </p-radioButton>
+                        <label for="city3" style="margin-left: 10px;">Pharmacy</label>
+                    </div>
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="city" value="Supplier" [(ngModel)]="selectedsource"
+>
+                        </p-radioButton>
+                        <label for="city4" style="margin-left: 10px;">Supplier</label>
+                    </div>
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="city" value="Pledge" [(ngModel)]="selectedsource">
+                        </p-radioButton>
+                        <label for="city4" style="margin-left: 10px;">Pledge</label>
+                    </div>
+                </div>
+
+                <div class="col">
+                <label for="" style="color: rgb(180, 15, 15); font-size: 30px;">To</label>
+
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="city" value="Pharmacy" [(ngModel)]="selectedTarget"
+                           >
+                        </p-radioButton>
+                        <label for="city3" style="margin-left: 10px;" >Pharmacy</label>
+                    </div>
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="city" value="Supplier" [(ngModel)]="selectedTarget"
+                            >
+                        </p-radioButton>
+                        <label for="city4" style="margin-left: 10px;">Supplier</label>
+                    </div>
+                    <div class="p-field-radiobutton">
+                        <p-radioButton name="city" value="Pledge" [(ngModel)]="selectedTarget">
+                        </p-radioButton>
+                        <label for="city4" style="margin-left: 10px;">Pledge</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div style="width: 50%;">
+                <div class="col" *ngIf="selectedsource =='Pharmacy'">
                     <label class="labelstyle">Select Phrmacy Name</label>
                     <select [(ngModel)]="order.pharmacyID" name="pharmacy" class="form-control">Profession
                         <option value="" selected disabled hidden>firm</option>
                         <option *ngFor="let thhe of pharmacy" value="{{thhe.id}}">{{thhe.name}}</option>
                     </select>
                 </div>
-
-                <!-- <div class="col">
-                    <label class="labelstyle">Select Pledge Name</label>
-                    <select [(ngModel)]="order.pledgeID" name="pledge" class="form-control">Profession
-                        <option value="" selected disabled hidden>firm</option>
-                        <option *ngFor="let thhe of pledge" value="{{thhe.id}}">{{thhe.name}}</option>
-                    </select>
-                </div> -->
-
-                <div class="col">
+            </div>
+                <div class="col" *ngIf="selectedTarget =='Supplier'">
                     <label class="labelstyle">Select Supplier Name</label>
                     <select [(ngModel)]="order.supplierID" name="supplier" class="form-control">Profession
-                        <option value="" selected disabled hidden>firm</option>
+                        <option value="" selected disabled hidden>Supplier</option>
                         <option *ngFor="let thhe of supplier" value="{{thhe.id}}">{{thhe.name}}</option>
                     </select>
                 </div>
-
             </div>
-
-
 
             <div class="p-grid p-fluid row">
                 <div class="p-col-12 p-md-4">
@@ -120,7 +156,7 @@
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">../../</span>
                         <!-- <input type="text" pInputText placeholder="Order Date" [(ngModel)]=""> -->
-                    <p-calendar inputId="basic" [(ngModel)]="order.date"></p-calendar>
+                        <p-calendar inputId="basic" [(ngModel)]="order.date"></p-calendar>
 
                     </div>
                 </div>
@@ -136,10 +172,11 @@
             </div> -->
             <div>
                 <textarea rows="5" cols="30" pInputTextarea placeholder="Comments" [(ngModel)]="order.comments"
-                    style="margin-bottom: 20px;"></textarea>
+                    style="margin-bottom: 20px; width: 100%;"></textarea>
             </div>
 
-            <input type="button" (click)="saveOrderList()" value="Add" class="btn btn-success">
+            <!-- <input type="button"  value="Add" > -->
+            <button (click)="saveOrderList()" class="btn btn-success">Save Order</button>
 
             <!-- <div class="p-field p-col-12 p-md-3">
                 <label for="horizontal">Horizontal with Step</label>
@@ -188,7 +225,8 @@
 
                         <!-- <td><p-rating  [readonly]="true" [cancel]="false"></p-rating></td> -->
                         <td>
-                            <mat-icon color="primary" style="cursor: pointer;" pRipple class="ui-button-warning">
+                            <mat-icon color="primary" style="cursor: pointer;" pRipple class="ui-button-warning"
+                                (click)="deleteDrugFromList(product)">
                                 delete_outline</mat-icon>
                             <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
                             <!-- <button type="button" (click)="confirm1()" pButton icon="pi pi-check" label="Confirm"></button> -->

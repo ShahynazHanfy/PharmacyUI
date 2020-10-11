@@ -17,6 +17,9 @@ import {HomeComponent} from './component/home/home.component'
 // import {RrComponent} from './component/form/form.component'
 import {FormComponent} from '../app/component/form/form.component'
 import {AddOrderComponent} from '../app/component/Order/add-order/add-order.component'
+import{EmployeeComponent} from './component/Employee/emplyee/employee.component'
+
+import { AllUserComponent } from './component/Users/all-user/all-user.component';
 
 
 const routes: Routes = [
@@ -41,6 +44,9 @@ const routes: Routes = [
     { path: 'admin', component: AdminComponent },
     { path: 'firm', component: FirmComponent },
     { path: 'form', component: FormComponent },  
+    { path: 'employee', component: EmployeeComponent },  
+    { path: 'allusers', component: AllUserComponent },  
+
     // { path: 'addOrder', component: AddOrderComponent },  
   ]}
 

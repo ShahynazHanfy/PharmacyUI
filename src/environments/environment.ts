@@ -29,11 +29,8 @@ export const environment = {
   pharmacy: 'http://localhost:51563/api/drugs/pharmacy',
   pledge: 'http://localhost:51563/api/drugs/pledge',
   supplier: 'http://localhost:51563/api/drugs/Supplier',
-
-
-
-
-
+  employee: 'http://localhost:51563/api/Employees/',
+  
 
   production: false
 };

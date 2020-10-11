@@ -137,6 +137,7 @@ confirmmmmmmm(id:number) {
       icon: 'pi pi-info-circle',
       accept: () => {
         this.onDeleteRow(id)
+        console.log(id)
           this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
       },
       reject: () => {

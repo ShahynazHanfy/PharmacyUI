@@ -95,7 +95,7 @@ export class ShowCategoriesComponent implements OnInit {
     this.displayBasic = true;
   this.CategoryService.getCategoryByID(id).subscribe(
     data=>{
-     this.category= data
+     this.category= data ;
     //  console.log(data+"ddd")
     },error=>{console.log(error)}
   )
